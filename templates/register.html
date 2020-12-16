@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal Registration</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+
+    <h2>Register Today!</h2>
+
+        <h3>Create An Account</h3>
+
+            <p>Create an account to access pay your rent, review documents, schedule maintenance, and more from the
+            convenience of your home.</p>
+
+                <br />
+
+                <form method="POST" action="/register">
+                    <table>
+                    <tr>
+                        <td align="right">Username</td>
+                        <td><input type="text" name="nm" /></td>
+                    </tr>
+                    <tr>
+                        <td align="right">Password</td>
+                        <td><input type="password" name="np" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="right"><input type="submit" name="submit" value="Register"/></td>
+                    </tr>
+                    </table>
+                </form>
+    <p><h5>{{ taken }}</h5></p>
+        <br />
+</body>
+</html>

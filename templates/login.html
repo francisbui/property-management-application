@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Resident Login</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+
+    <h2>Resident Login</h2>
+
+        <h3>Access Your Account</h3>
+
+            <p>Welcome back! To access your account please enter your credentials in the form below.</p>
+
+                <br />
+
+                <form method="POST" action="/login">
+                    <table>
+                    <tr>
+                        <td align="right">Username</td>
+                        <td><input type="text" name="nm" /></td>
+                    </tr>
+                    <tr>
+                        <td align="right">Password</td>
+                        <td><input type="password" name="np" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="right"><input type="submit" name="submit" value="Log In"/></td>
+                    </tr>
+                    </table>
+                </form>
+
+    <p><h5>{{ taken }}</h5></p>
+
+                    <br />
+
+        <h3>Create An Account</h3>
+
+        <p>Register today to get access your account information convenient online payment services.</p>
+        <p>Are you a current resident? <a href="/register">Register today</a>.</p>
+
+        <br />
+</body>
+</html>

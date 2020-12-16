@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+
+
+h1 {
+    font-family: 'Marcellus', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-family: 'Marcellus', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h3 {
+    font-family: 'Marcellus', serif;
+    letter-spacing: 2px;
+}
+
+h4 {
+    font-family: 'Marcellus', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+body {
+    font-family: 'Marcellus', serif;
+    letter-spacing: 1px;
+}
+
+p {
+    font-family: 'Marcellus', serif;
+    letter-spacing: 1px;
+}
+
+a {
+    font-family: 'Marcellus', serif;
+    letter-spacing: 1px;
+}
+
+ul {
+    font-family: 'Marcellus', serif;
+    letter-spacing: 1px;
+}
+
+ol {
+    font-family: 'Marcellus', serif;
+
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  font-family: 'Marcellus', serif;
+  letter-spacing: 2px;
+}
+
+input[type=submit]:active {
+  background-color: #A9A9A9;
+}
+
+table {
+    border: 1px solid black;
+    padding: 30px;
+}
+
+th, td {
+    padding: 5px;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("../static/images/hero.jpg");
+
+  /* Set a specific height */
+  min-height: 700px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#header{
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.center-cropped {
+  min-width: 350px;
+  max-height: 350px;
+  overflow: hidden;
+}
+
+.center-cropped img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  max-width: 100%;
+
+  transform: translate(-50%, -50%)
+}
