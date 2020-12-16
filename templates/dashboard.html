@@ -2,52 +2,286 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Apply Today</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Yorkshire Residential Community</title>
     <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
 
-    <h1>Yorkshire Community Portal</h1>
+<!-- Nav Bar -->
 
-    <img src="../static/images/13.jpg" alt="" width="100%;">
+ <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+    <a class="navbar-brand" href="/"><img src="../static/images/logo.svg" width="25" height="25" class="d-inline-block align-top" alt=""> Yorkshire Residential Community</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="#">Home</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="#">Link</a>-->
+<!--        </li>-->
+      </ul>
+      <form class="form-inline mt-2 mt-md-0" method="POST" action="/login">
+        <input class="form-control mr-sm-2 my-2 form-control-sm" type="text" name="nm" placeholder="Username" required autofocus>
+        <input class="form-control mr-sm-2 my-2 form-control-sm" type="password" name="np" placeholder="Password" required>
+        <button class="btn btn-secondary my-2 btn-sm" type="submit" name="submit" value="Log In">Login</button>
+      </form>
+    </div>
+ </nav>
 
-        <p><a href="/updatepass">Update Password</a> | <a href="/logout">Logout</a> </p>
+<!-- Nav Bar End-->
 
-        <h2>Welcome Home {{username}}!</h2>
+<!-- Background Image -->
+<div class="container-fluid" style="height: 500px; background-image: url('../static/images/hero.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;"></div>
+    <div class="container" id="header">
+        <h1 align="left">Welcome Home {{username}}!</h1>
+        <br/>
+    </div>
 
-            <p>Welcome to your online residential portal. Here you can access your account resources including other
-                resources regarding your account management, billing, maintenance as well as local events, news and
-                classifieds.</p>
+<!-- Main 2 -->
 
-                    <br />
+<div class="jumbotron">
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Update Password</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="/updatepass" class="btn btn-primary">Learn More</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Logout</h5> <!-- change this to View Statement in the future-->
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="/logout" class="btn btn-primary">Learn More</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
-    <p>
-        <table cellspacing="20px">
-            <tr style="text-align: center;">
-                <td style="width:33%"><h2>Online Payment</h2></td>
-                <td style="width:33%"><h2>Yorkshire Times</h2></td>
-                <td style="width:33%"><h2>Community Events</h2></td>
-            </tr>
-            <tr style="text-align: center; vertical-align: top;">
-                <td><img src="../static/images/14.jpg" width="100%"></td>
-                <td><img src="../static/images/15.jpg" width="100%"></td>
-                <td><img src="../static/images/16.jpg" width="100%"></td>
-            </tr>
-            <tr style="text-align: center; vertical-align: top;">
-                <td><h3>Conveniently Pay Your Bills Online</h3></td>
-                <td><h3>Our Community Newsletter</h3></td>
-                <td><h3>Places to See and Things to Do</h3></td>
-            </tr>
-            <tr style="text-align: justify; vertical-align: top;">
-                <td>Our online payment portal saves you a trip to our leasing office. Simply make a payment online
-                    from the convenience of your home. All payments sent before 6 PM will be processed the same day.</td>
-                <td>Find out what's happening in our community and stay up-to date with the local news and all the
-                    events going on around you.</td>
-                <td>Do you like museums, comedy clubs, breweries, wineries, whiskey-eries? Well whatever it is that
-                you are into, know that our community has something for everybody.</td>
-            </tr>
-        </table>
-    </p>
+<!-- Main -->
+<div class="jumbotron">
 
+<div class="row">
+  <div class="col-sm-3">
+    <div class="card text-white bg-success">
+      <div class="card-header">Current Statement</div>
+        <div class="card-body">
+        <h5 class="card-title">Primary card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card text-white bg-primary">
+      <div class="card-header">Past Statement</div>
+        <div class="card-body">
+        <h5 class="card-title">Primary card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card text-white bg-warning">
+      <div class="card-header">Currently Due</div>
+        <div class="card-body">
+        <h5 class="card-title">Primary card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card text-white bg-danger">
+      <div class="card-header">Past Due</div>
+        <div class="card-body">
+        <h5 class="card-title">Primary card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row my-4">
+  <div class="col-sm-9">
+    <div class="card">
+      <div class="card-header">Community News and Notification</div>
+        <div class="card-body">
+        <h5 class="card-title">Primary card title</h5>
+        <p class="card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Vitae congue eu consequat ac felis. Dictum varius duis at consectetur lorem donec
+            massa sapien. Amet nisl suscipit adipiscing bibendum est ultricies integer. Volutpat est velit egestas
+            dui id ornare. Eget mi proin sed libero enim sed. Sodales ut eu sem integer vitae justo eget magna
+            fermentum. Condimentum vitae sapien pellentesque habitant morbi tristique senectus et. Fames ac turpis
+            egestas maecenas pharetra convallis posuere morbi. Penatibus et magnis dis parturient montes nascetur
+            ridiculus. Turpis massa sed elementum tempus egestas sed. In eu mi bibendum neque egestas congue quisque.
+            Mattis rhoncus urna neque viverra justo nec ultrices dui sapien. Augue lacus viverra vitae congue eu. Leo
+            duis ut diam quam nulla porttitor massa.
+         </p><p>
+            Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Congue quisque egestas diam in arcu
+            cursus. Dictum non consectetur a erat nam at lectus urna duis. Quam pellentesque nec nam aliquam. Praesent
+            tristique magna sit amet purus gravida quis blandit turpis. Vulputate eu scelerisque felis imperdiet proin
+            fermentum leo vel orci. Ultricies integer quis auctor elit sed vulputate. Id diam vel quam elementum
+            pulvinar etiam non quam lacus. Elit ullamcorper dignissim cras tincidunt lobortis. Nunc consequat interdum
+            varius sit.
+        </p><p>
+            Diam phasellus vestibulum lorem sed risus. Ipsum faucibus vitae aliquet nec ullamcorper. Adipiscing
+            bibendum est ultricies integer quis auctor elit. Vitae congue eu consequat ac felis. Nulla malesuada
+            pellentesque elit eget gravida cum sociis. Commodo ullamcorper a lacus vestibulum sed arcu non. Quam
+            pellentesque nec nam aliquam. Vitae nunc sed velit dignissim sodales. Convallis convallis tellus id
+            interdum velit laoreet id donec. Tristique senectus et netus et malesuada fames ac turpis. Mauris ultrices
+            eros in cursus. Tempus quam pellentesque nec nam aliquam sem et tortor consequat. Pharetra et ultrices
+            neque ornare aenean. Est placerat in egestas erat imperdiet sed euismod nisi.
+        </p><p>
+            Sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae. Eleifend quam adipiscing vitae
+            proin sagittis. Bibendum enim facilisis gravida neque convallis a cras semper. Et ultrices neque ornare
+            aenean euismod elementum nisi quis eleifend. Sed arcu non odio euismod lacinia at quis risus sed. Integer
+            quis auctor elit sed vulputate mi sit amet. Nisi scelerisque eu ultrices vitae auctor. Non blandit massa
+            enim nec dui nunc mattis enim ut. Pellentesque massa placerat duis ultricies lacus sed turpis. A lacus
+            vestibulum sed arcu non odio. In fermentum posuere urna nec tincidunt praesent. Magna sit amet purus
+            gravida quis blandit. Non tellus orci ac auctor augue mauris augue. Amet facilisis magna etiam tempor orci
+            eu lobortis elementum. Posuere morbi leo urna molestie at elementum eu facilisis. Duis ultricies lacus sed
+            turpis tincidunt id aliquet risus. Mattis rhoncus urna neque viverra. Et malesuada fames ac turpis egestas
+            maecenas. Nisi quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Online Bill Payment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Pay Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+<!-- Article 1 -->
+
+<div class="jumbotron">
+<br/>
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="card mb-3 shadow-sm">
+      <div class="row g-0">
+        <div class="col-md-4 center-cropped">
+            <img src="../static/images/14.jpg" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title text-muted ">Convenient Online Bill Pay</h4>
+            <p class="card-text">
+                Our online payment portal saves you a trip to our leasing office. Simply make a payment online from
+                the convenience of your home. All payments sent before 6 PM will be processed the same day.
+            </p>
+            <p><a class="btn btn-secondary" href="#" role="button">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+<br/>
+    <div class="card mb-3 shadow-sm">
+      <div class="row g-0">
+        <div class="col-md-4 center-cropped">
+          <img src="../static/images/15.jpg" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title text-muted">Yorkshire Community Newsletter</h4>
+            <p class="card-text">
+                Find out what's happening in our community and stay up-to date with the local news and all the events
+                happening on around you.
+            </p>
+            <p><a class="btn btn-secondary" href="#" role="button">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+<br/>
+    <div class="card mb-3 shadow-sm">
+      <div class="row g-0">
+        <div class="col-md-4 center-cropped">
+          <img src="../static/images/16.jpg" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title text-muted">Local Events and Entertainment</h4>
+            <p class="card-text">
+                Do you like museums, comedy clubs, breweries, wineries, whiskey-eries? Well whatever it is that you
+                are into, know that our community has something for everybody.
+            </p>
+            <p><a class="btn btn-secondary" href="#" role="button">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<br/>
+</div>
+
+
+<!-- Tour -->
+
+<div class="jumbotron">
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Settings</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Learn More</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Report an Issue</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Learn More</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Footer -->
+
+<div class="container">
+    <!-- Datetime Begins-->
+        <h6 align="center">{{ todaydate }}</h6>
+    <!-- Datetime Ends -->
+    <p align="center">&copy; 2020 by Francis Bui</p>
+<br/>
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
