@@ -83,7 +83,8 @@ def login():
                 session['username'] = username
                 print(session['username'])
                 return render_template('dashboard.html',
-                                       username=username
+                                       username=username,
+                                       dashtodaydate=datetime.now().strftime('%b %d')
                                        )
             with open('logger.csv', "a") as log:
                 log.write('\n' + datetime.now().strftime("%x, %X %p, ") +
@@ -172,7 +173,8 @@ def updatepass():
                 (pd.DataFrame.from_dict(data=acc_pass, orient='index')
                  .to_csv('accounts.csv', header=False))
                 return render_template('dashboard.html',
-                                       username=username
+                                       username=username,
+                                       dashtodaydate=datetime.now().strftime('%b %d')
                                        )
 
             if sha256_crypt.verify(password, acc_pass[username]) and newpassword != confpassword:
