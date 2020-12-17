@@ -1,15 +1,8 @@
 """
- * Francis Bui
- * SDEV 300
- * Professor Chris Howard
- * Lab 8 - Security and Cipher Tools
- * Oct 6, 2020
- * This application is to build upon the previous two week's by adding some additional
- * functionality to the web application. Included is a password update form that will
- * reset the user's password. An authentication function that compares the user's
- * password for weak passwords found in the CommonPassword.txt file. Lastly, it will
- * also contain a logger for any logins that were unsuccessful.
+Copyright (c) Francis Bui
+Oct 6, 2020
 """
+
 import csv
 import re
 from datetime import datetime, timezone
