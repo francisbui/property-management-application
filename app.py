@@ -199,5 +199,15 @@ def logout():
     return redirect(url_for('index'))
 
 
+# Dashboard
+
+@app.route('/profile')
+def profile():
+    """
+    Profile Page
+    """
+    return render_template('profile.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)

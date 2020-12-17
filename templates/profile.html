@@ -20,18 +20,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" href="#">Home</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" href="#">Link</a>-->
-<!--        </li>-->
       </ul>
-      <form class="form-inline mt-2 mt-md-0" method="POST" action="/login">
-        <input class="form-control mr-sm-2 my-2 form-control-sm" type="text" name="nm" placeholder="Username" required autofocus>
-        <input class="form-control mr-sm-2 my-2 form-control-sm" type="password" name="np" placeholder="Password" required>
-        <button class="btn btn-secondary my-2 btn-sm" type="submit" name="submit" value="Log In">Login</button>
-      </form>
+          <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="../static/icons/person-circle.svg" width="22" height="22" class="d-inline-block align-center" alt="">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/profile">Profile</a>
+          <a class="dropdown-item" href="/billing">Billing</a>
+          <a class="dropdown-item" href="/security">Security</a>
+          <a class="dropdown-item" href="/notifications">Notifications</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">Logout</a>
+        </div>
+      </div>
     </div>
  </nav>
 
@@ -48,239 +50,66 @@
 <div class="jumbotron">
 
 <div class="row">
-  <div class="col-sm-3">
-    <div class="card text-white bg-success my-2">
-      <div class="card-header">Current Monthly Bill</div>
-        <div class="card-body">
-        <h1 class="card-title">$2,450</h1>
-        <p class="card-text"></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card text-white bg-primary my-2">
-      <div class="card-header">Next Payment Due</div>
-        <div class="card-body">
-        <h1 class="card-title">July 15</h1>
-        <p class="card-text"></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card text-white bg-info my-2">
-      <div class="card-header">Days Remaining</div>
-        <div class="card-body">
-        <h1 class="card-title">5 Days</h1>
-        <p class="card-text"></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card text-white bg-secondary my-2">
-      <div class="card-header">Today's Date</div>
-        <div class="card-body">
-        <h1 class="card-title">{{ dashtodaydate }}</h1>
-        <p class="card-text"></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-9">
-    <div class="card my-4">
-        <div class="card-header"><h2>Yorkshire Community Announcements</h2></div>
-        <div class="card-body">
-        <h5 class="card-title">Primary card title</h5>
-        <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Vitae congue eu consequat ac felis. Dictum varius duis at consectetur lorem donec
-            massa sapien. Amet nisl suscipit adipiscing bibendum est ultricies integer. Volutpat est velit egestas
-            dui id ornare. Eget mi proin sed libero enim sed. Sodales ut eu sem integer vitae justo eget magna
-            fermentum. Condimentum vitae sapien pellentesque habitant morbi tristique senectus et. Fames ac turpis
-            egestas maecenas pharetra convallis posuere morbi. Penatibus et magnis dis parturient montes nascetur
-            ridiculus. Turpis massa sed elementum tempus egestas sed. In eu mi bibendum neque egestas congue quisque.
-            Mattis rhoncus urna neque viverra justo nec ultrices dui sapien. Augue lacus viverra vitae congue eu. Leo
-            duis ut diam quam nulla porttitor massa.
-         </p><p>
-            Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Congue quisque egestas diam in arcu
-            cursus. Dictum non consectetur a erat nam at lectus urna duis. Quam pellentesque nec nam aliquam. Praesent
-            tristique magna sit amet purus gravida quis blandit turpis. Vulputate eu scelerisque felis imperdiet proin
-            fermentum leo vel orci. Ultricies integer quis auctor elit sed vulputate. Id diam vel quam elementum
-            pulvinar etiam non quam lacus. Elit ullamcorper dignissim cras tincidunt lobortis. Nunc consequat interdum
-            varius sit.
-        </p><p>
-            Diam phasellus vestibulum lorem sed risus. Ipsum faucibus vitae aliquet nec ullamcorper. Adipiscing
-            bibendum est ultricies integer quis auctor elit. Vitae congue eu consequat ac felis. Nulla malesuada
-            pellentesque elit eget gravida cum sociis. Commodo ullamcorper a lacus vestibulum sed arcu non. Quam
-            pellentesque nec nam aliquam. Vitae nunc sed velit dignissim sodales. Convallis convallis tellus id
-            interdum velit laoreet id donec. Tristique senectus et netus et malesuada fames ac turpis. Mauris ultrices
-            eros in cursus. Tempus quam pellentesque nec nam aliquam sem et tortor consequat. Pharetra et ultrices
-            neque ornare aenean. Est placerat in egestas erat imperdiet sed euismod nisi.
-        </p><p>
-            Sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae. Eleifend quam adipiscing vitae
-            proin sagittis. Bibendum enim facilisis gravida neque convallis a cras semper. Et ultrices neque ornare
-            aenean euismod elementum nisi quis eleifend. Sed arcu non odio euismod lacinia at quis risus sed. Integer
-            quis auctor elit sed vulputate mi sit amet. Nisi scelerisque eu ultrices vitae auctor. Non blandit massa
-            enim nec dui nunc mattis enim ut. Pellentesque massa placerat duis ultricies lacus sed turpis. A lacus
-            vestibulum sed arcu non odio. In fermentum posuere urna nec tincidunt praesent. Magna sit amet purus
-            gravida quis blandit. Non tellus orci ac auctor augue mauris augue. Amet facilisis magna etiam tempor orci
-            eu lobortis elementum. Posuere morbi leo urna molestie at elementum eu facilisis. Duis ultricies lacus sed
-            turpis tincidunt id aliquet risus. Mattis rhoncus urna neque viverra. Et malesuada fames ac turpis egestas
-            maecenas. Nisi quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-3 my-4">
+  <div class="col-sm-4 my-4">
     <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Online Bill Payment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-danger">Pay Now</a>
-      </div>
+        <div class="card-header">Profile Picture</div>
+          <div class="card-body" align="center">
+            <img src="../static/icons/person-circle.svg" width="100" height="100" class="align-center mt-2 mb-4" alt="">
+              <p class="card-text"><i>JPG or PNG no larger than 5 MB</i></p>
+            <a href="#" class="btn btn-primary my-3">Upload New Image</a>
+        </div>
     </div>
   </div>
-</div>
 
-
-</div>
-
-
-
-<!-- Main 2 -->
-
-<div class="jumbotron">
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card my-3">
-      <div class="card-body">
-        <h5 class="card-title">Profile</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="/profile" class="btn btn-primary">Learn More</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card my-3">
-      <div class="card-body">
-        <h5 class="card-title">Billing</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="/billing" class="btn btn-primary">Learn More</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card my-3">
-      <div class="card-body">
-        <h5 class="card-title">Security</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="/updatepass" class="btn btn-primary">Learn More</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card my-3">
-      <div class="card-body">
-        <h5 class="card-title">Notifications</h5> <!-- change this to View Statement in the future-->
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="/logout" class="btn btn-primary">Learn More</a>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-
-
-<!-- Article 1 -->
-
-<div class="jumbotron">
-<div class="container-fluid">
-    <div class="card mb-3 shadow-sm">
-      <div class="row g-0">
-        <div class="col-md-4 center-cropped">
-            <img src="../static/images/14.jpg" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h4 class="card-title text-muted ">Convenient Online Bill Pay</h4>
-            <p class="card-text">
-                Our online payment portal saves you a trip to our leasing office. Simply make a payment online from
-                the convenience of your home. All payments sent before 6 PM will be processed the same day.
-            </p>
-            <p><a class="btn btn-secondary" href="#" role="button">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-<br/>
-    <div class="card mb-3 shadow-sm">
-      <div class="row g-0">
-        <div class="col-md-4 center-cropped">
-          <img src="../static/images/15.jpg" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h4 class="card-title text-muted">Yorkshire Community Newsletter</h4>
-            <p class="card-text">
-                Find out what's happening in our community and stay up-to date with the local news and all the events
-                happening on around you.
-            </p>
-            <p><a class="btn btn-secondary" href="#" role="button">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-<br/>
-    <div class="card mb-3 shadow-sm">
-      <div class="row g-0">
-        <div class="col-md-4 center-cropped">
-          <img src="../static/images/16.jpg" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h4 class="card-title text-muted">Local Events and Entertainment</h4>
-            <p class="card-text">
-                Do you like museums, comedy clubs, breweries, wineries, whiskey-eries? Well whatever it is that you
-                are into, know that our community has something for everybody.
-            </p>
-            <p><a class="btn btn-secondary" href="#" role="button">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
-
-<br/>
-</div>
-
-
-<!-- Tour -->
-
-<div class="jumbotron">
-<div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-8 my-4">
     <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Logout</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="/logout" class="btn btn-primary">Learn More</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Report an Issue</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Learn More</a>
+        <div class="card-header">Account Details</div>
+        <div class="card-body">
+
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="inputFirst">First Name</label>
+              <input type="text" class="form-control" id="inputFirst" placeholder="John" disabled>
+            </div>
+            <div class="form-group col-md-5">
+              <label for="inputLast">Last Name</label>
+              <input type="text" class="form-control" id="inputLast" placeholder="Smith" disabled>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputUnit">Unit</label>
+              <input type="text" class="form-control" id="inputUnit" placeholder="A301" disabled>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputEmail">Email Address</label>
+            <input type="email" class="form-control" id="inputEmail">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputPrimary">Primary Number</label>
+              <input type="number" class="form-control" id="inputPrimary" placeholder="(123) 456 -7890" disabled>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="inputAlt">Alternative Phone</label>
+              <input type="number" class="form-control" id="inputAlt">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary my-3">Save Changes</button>
+        </form>
+
       </div>
     </div>
   </div>
 </div>
+
+
 </div>
+
 
 <!-- Footer -->
 
