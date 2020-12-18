@@ -1,38 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Portal Registration</title>
-    <link rel="stylesheet" href="../static/style.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
 
-    <h2>Register Today!</h2>
+<div class="jumbotron">
+    <div class="container text-center">
+        <form style="display: inline-block;" method="POST" action="/register">
+            <img class="mb-4" src="../static/images/logo.svg" alt="" width="72" height="72">
+            <h2>Register Today!</h2>
+            <p>Create an account to access pay your rent, <br/> review documents, schedule maintenance, and more</p>
+                <input type="text" name="nm" class="form-control form-control-lg my-3" placeholder="Username" required autofocus>
+                <input type="password" name="np" class="form-control form-control-lg my-3" placeholder="Password" required>
+                <button class="btn btn-lg btn-secondary btn-block" type="submit" name="submit" value="Register">Register</button>
+            <br/>
+            <h5>{{ taken }}</h5>
+        </form>
+    </div>
+</div>
 
-        <h3>Create An Account</h3>
-
-            <p>Create an account to access pay your rent, review documents, schedule maintenance, and more from the
-            convenience of your home.</p>
-
-                <br />
-
-                <form method="POST" action="/register">
-                    <table>
-                    <tr>
-                        <td align="right">Username</td>
-                        <td><input type="text" name="nm" /></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Password</td>
-                        <td><input type="password" name="np" /></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td align="right"><input type="submit" name="submit" value="Register"/></td>
-                    </tr>
-                    </table>
-                </form>
-    <p><h5>{{ taken }}</h5></p>
-        <br />
-</body>
-</html>
+{% endblock %}

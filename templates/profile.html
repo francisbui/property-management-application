@@ -1,131 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends "dashboard_base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Yorkshire Residential Community</title>
-    <link rel="stylesheet" href="../static/style.css">
-</head>
-<body>
-
-<!-- Nav Bar -->
-
- <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-    <a class="navbar-brand" href="/"><img src="../static/images/logo.svg" width="25" height="25" class="d-inline-block align-top" alt=""> Yorkshire Residential Community</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-      </ul>
-          <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="../static/icons/person-circle.svg" width="22" height="22" class="d-inline-block align-center" alt="">
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/profile">Profile</a>
-          <a class="dropdown-item" href="/billing">Billing</a>
-          <a class="dropdown-item" href="/security">Security</a>
-          <a class="dropdown-item" href="/notifications">Notifications</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/logout">Logout</a>
-        </div>
-      </div>
-    </div>
- </nav>
-
-<!-- Nav Bar End-->
-
-<!-- Background Image -->
-<div class="container-fluid" style="height: 500px; background-image: url('../static/images/hero.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;"></div>
-    <div class="container" id="header">
-        <h1 align="left">Welcome Home {{username}}!</h1>
-        <br/>
-    </div>
-
-<!-- Main -->
+<!-- Body -->
 <div class="jumbotron">
 
-<div class="row">
-  <div class="col-sm-4 my-4">
-    <div class="card">
-        <div class="card-header">Profile Picture</div>
-          <div class="card-body" align="center">
-            <img src="../static/icons/person-circle.svg" width="100" height="100" class="align-center mt-2 mb-4" alt="">
-              <p class="card-text"><i>JPG or PNG no larger than 5 MB</i></p>
-            <a href="#" class="btn btn-primary my-3">Upload New Image</a>
+    <div class="row">
+      <div class="col-sm-4 my-4">
+        <div class="card">
+            <div class="card-header">Profile Picture</div>
+              <div class="card-body" align="center">
+                <img src="../static/icons/person-circle.svg" width="100" height="100" class="align-center mt-2 mb-4" alt="">
+                  <p class="card-text"><i>JPG or PNG no larger than 5 MB</i></p>
+                <a href="#" class="btn btn-primary my-3">Upload New Image</a>
+            </div>
         </div>
-    </div>
-  </div>
+      </div>
 
-  <div class="col-sm-8 my-4">
-    <div class="card">
-        <div class="card-header">Account Details</div>
-        <div class="card-body">
+      <div class="col-sm-8 my-4">
+        <div class="card">
+            <div class="card-header">Account Details</div>
+            <div class="card-body">
 
-        <form>
-          <div class="form-row">
-            <div class="form-group col-md-5">
-              <label for="inputFirst">First Name</label>
-              <input type="text" class="form-control" id="inputFirst" placeholder="John" disabled>
-            </div>
-            <div class="form-group col-md-5">
-              <label for="inputLast">Last Name</label>
-              <input type="text" class="form-control" id="inputLast" placeholder="Smith" disabled>
-            </div>
-            <div class="form-group col-md-2">
-              <label for="inputUnit">Unit</label>
-              <input type="text" class="form-control" id="inputUnit" placeholder="A301" disabled>
-            </div>
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-5">
+                  <label for="inputFirst">First Name</label>
+                  <input type="text" class="form-control" id="inputFirst" placeholder="John" disabled>
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="inputLast">Last Name</label>
+                  <input type="text" class="form-control" id="inputLast" placeholder="Smith" disabled>
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="inputUnit">Unit</label>
+                  <input type="text" class="form-control" id="inputUnit" placeholder="A301" disabled>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail">Email Address</label>
+                <input type="email" class="form-control" id="inputEmail">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputPrimary">Primary Number</label>
+                  <input type="number" class="form-control" id="inputPrimary" placeholder="(123) 456 -7890" disabled>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="inputAlt">Alternative Phone</label>
+                  <input type="number" class="form-control" id="inputAlt">
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary my-3">Save Changes</button>
+            </form>
+
           </div>
-
-          <div class="form-group">
-            <label for="inputEmail">Email Address</label>
-            <input type="email" class="form-control" id="inputEmail">
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputPrimary">Primary Number</label>
-              <input type="number" class="form-control" id="inputPrimary" placeholder="(123) 456 -7890" disabled>
-            </div>
-
-            <div class="form-group col-md-6">
-              <label for="inputAlt">Alternative Phone</label>
-              <input type="number" class="form-control" id="inputAlt">
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary my-3">Save Changes</button>
-        </form>
-
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
 
 </div>
 
 
-<!-- Footer -->
-
-<div class="container">
-    <!-- Datetime Begins-->
-        <h6 align="center">{{ todaydate }}</h6>
-    <!-- Datetime Ends -->
-    <p align="center">&copy; 2020 by Francis Bui</p>
-<br/>
-</div>
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}

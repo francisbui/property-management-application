@@ -203,10 +203,12 @@ def logout():
 
 @app.route('/profile')
 def profile():
-    """
-    Profile Page
-    """
     return render_template('profile.html')
+
+
+@app.route('/billing')
+def billing():
+    return render_template('billing.html')
 
 
 if __name__ == '__main__':
