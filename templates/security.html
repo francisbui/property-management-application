@@ -1,0 +1,54 @@
+{% extends "dashboard_base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-sm-8 my-4">
+            <div class="card">
+                <div class="card-header">Change Password</div>
+                <div class="card-body">
+                    <form method="POST" action="/security">
+                        <label for="inputUser">Username</label>
+                        <input type="text" name="nm" class="form-control mb-4" id="inputUser" placeholder="Current Password" required>
+                        <label for="inputCurrent">Current Password</label>
+                        <input type="password" name="np" class="form-control mb-4" id="inputCurrent" placeholder="Current Password" required>
+                        <label for="inputNew">New Password</label>
+                        <input type="password" name="nw" class="form-control mb-4" id="inputNew" placeholder="New Password" required>
+                        <label for="inputConfirm">Confirm Password</label>
+                        <input type="password" name="cp" class="form-control mb-4" id="inputConfirm" placeholder="Confirm Password" required>
+                        <button class="btn btn-primary" type="submit" name="submit" value="Update">Save Changes</button>
+                    </form>
+                    <br/>
+                    <h5 class="text-danger">{{ taken }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 my-4">
+            <div class="card">
+                <div class="card-header">Two-Factor Authentication</div>
+                <div class="card-body">
+                    <p>Add another level of security to your account by enabling two-factor authentication.
+                        We will send you a text message to verify your login attempts on unrecognized devices
+                        and browsers.</p>
+                    <form>
+                        <div class="form-check my-2">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" disabled>
+                          <label class="form-check-label" for="exampleRadios1">On</label>
+                        </div>
+                        <div class="form-check my-2">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                          <label class="form-check-label" for="exampleRadios2">Off</label>
+                        </div>
+                        <div class="mt-4">
+                            <label for="inputPhone">SMS Number</label>
+                            <input type="number" class="form-control mb-4" id="inputPhone" placeholder="Enter a phone number" required>
+                        </div>
+                        <button class="btn btn-primary mb-4" type="submit" name="submit" value="Update">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

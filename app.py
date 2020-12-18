@@ -130,7 +130,7 @@ def register():
     return render_template('register.html')
 
 
-@app.route('/updatepass', methods=['POST', 'GET'])
+@app.route('/security', methods=['POST', 'GET'])
 def updatepass():
     """
     Update password page
@@ -152,7 +152,7 @@ def updatepass():
             acc_pass = dict(filter(None, csv.reader(accounts)))
 
             if not sha256_crypt.verify(password, acc_pass[username]):
-                return render_template('updatepass.html',
+                return render_template('security.html',
                                        taken='Username and password '
                                              'does not match. Please try again.'
                                        )
@@ -171,11 +171,11 @@ def updatepass():
                                        )
 
             if sha256_crypt.verify(password, acc_pass[username]) and newpassword != confpassword:
-                return render_template('updatepass.html',
+                return render_template('security.html',
                                        taken='New passwords does not match. Please try again.'
                                        )
 
-            return render_template('updatepass.html',
+            return render_template('security.html',
                                    taken='Password requirements: '
                                          '12 characters in length, '
                                          '1 uppercase character, '
@@ -184,7 +184,7 @@ def updatepass():
                                          '1 special character.'
                                    )
 
-    return render_template('updatepass.html')
+    return render_template('security.html')
 
 
 @app.route('/logout')
@@ -200,6 +200,15 @@ def logout():
 
 
 # Dashboard
+@app.route('/dashboard')  # experimental: probably should make it so if user 'is' in session
+def dashboard():
+    if 'username' not in session:
+        return render_template('login.html')
+    else:
+        return render_template('dashboard.html',
+                               username=session['username'],
+                               dashtodaydate=datetime.now().strftime('%b %d'))
+
 
 @app.route('/profile')
 def profile():
