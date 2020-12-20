@@ -5,16 +5,40 @@ Oct 6, 2020
 
 import csv
 import re
+import pandas as pd
 from datetime import datetime, timezone
 
-import pandas as pd
-from passlib.hash import sha256_crypt
 from flask import Flask, render_template, request, url_for, session
+from flaskext.mysql import MySQL
+from passlib.hash import sha256_crypt
 from werkzeug.utils import redirect
 
 app = Flask(__name__)
 
 app.secret_key = 'thisismysecretkey'
+
+mysql = MySQL()
+app.config['MYSQL_DATABASE_USER'] = 'sql9383118'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'pLa9v4aRCh'
+app.config['MYSQL_DATABASE_DB'] = 'sql9383118'
+app.config['MYSQL_DATABASE_HOST'] = 'sql9.freemysqlhosting.net'
+app.config['MYSQL_CURSOR CLASS'] = 'DictCursor'
+mysql.init_app(app)
+
+
+@app.route('/database')
+def database():
+    conn = mysql.connect()
+    cur = conn.cursor()
+    # cur.execute('''CREATE TABLE player (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20))''')
+
+    cur.execute(''' INSERT INTO player VALUES (1, 'Anthony')''')
+    cur.execute(''' INSERT INTO player VALUES (2, 'Billy')''')
+    mysql.connect().commit()
+    cur.execute("SELECT name FROM player where id=2")
+    results = cur.fetchone()
+    print(results)
+    return str(results[0])
 
 
 @app.route('/')
@@ -70,7 +94,6 @@ def login():
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-
     if request.method == 'POST':
         username = request.form['nm']
         password = request.form['np']
