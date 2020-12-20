@@ -19,52 +19,26 @@ app.secret_key = 'thisismysecretkey'
 
 @app.route('/')
 def index():
-    """
-    Homepage
-    Will call and render the homepage template as well as return the datetime.
-    Additionally will return the name provided if one is used in the url parameter
-    :return: webpage and datetime function
-    """
     return render_template('index.html', todaydate=datetime.now().strftime('%c'))
 
 
 @app.route('/aboutus')
 def aboutus():
-    """
-    About Us page
-    Simply return the aboutus.html page
-    :return: webpage
-    """
     return render_template('aboutus.html')
 
 
 @app.route('/properties')
 def properties():
-    """
-    Properties page
-    Simply return the properties.html page
-    :return: webpage
-    """
     return render_template('properties.html')
 
 
 @app.route('/apply')
 def apply():
-    """
-    Apply page
-    Simply return the apply.html page
-    :return: webpage
-    """
     return render_template('apply.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    """
-    Login page
-    Authenticate and allows user to login to their dashboard
-    :return: webpage
-    """
     try:
         if request.method == 'POST':
             username = request.form['nm']
@@ -96,11 +70,6 @@ def login():
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    """
-    Register page
-    Allows user to create an account
-    :return: webpage
-    """
 
     if request.method == 'POST':
         username = request.form['nm']
@@ -132,12 +101,6 @@ def register():
 
 @app.route('/security', methods=['POST', 'GET'])
 def updatepass():
-    """
-    Update password page
-    Allows user change their password
-    only if they are already logged in
-    :return: webpage
-    """
     if 'username' not in session:
         return render_template('login.html')
 
@@ -184,17 +147,12 @@ def updatepass():
                                          '1 special character.'
                                    )
 
-    return render_template('security.html')
+    return render_template('security.html',
+                           username=session['username'])
 
 
 @app.route('/logout')
 def logout():
-    """
-    Logout function
-    Ends user's session and redirects them
-    back to the homepage
-    :return: redirection
-    """
     session.pop('username', None)
     return redirect(url_for('index'))
 
@@ -212,17 +170,29 @@ def dashboard():
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    if 'username' not in session:
+        return render_template('login.html')
+    else:
+        return render_template('profile.html',
+                               username=session['username'])
 
 
 @app.route('/billing')
 def billing():
-    return render_template('billing.html')
+    if 'username' not in session:
+        return render_template('login.html')
+    else:
+        return render_template('billing.html',
+                               username=session['username'])
 
 
 @app.route('/notifications')
 def notifications():
-    return render_template('notifications.html')
+    if 'username' not in session:
+        return render_template('login.html')
+    else:
+        return render_template('notifications.html',
+                               username=session['username'])
 
 
 if __name__ == '__main__':
