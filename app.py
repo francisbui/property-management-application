@@ -43,7 +43,7 @@ def database():
 
 @app.route('/')
 def index():
-    return render_template('index.html', todaydate=datetime.now().strftime('%c'))
+    return render_template('index.html', todaydate=datetime.now().strftime('%A %B %d, %Y'))
 
 
 @app.route('/aboutus')
