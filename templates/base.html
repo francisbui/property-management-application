@@ -19,10 +19,10 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
       </ul>
-      <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2 my-2 form-control-sm" type="text" placeholder="Username" aria-label="Search">
-        <input class="form-control mr-sm-2 my-2 form-control-sm" type="password" placeholder="Password" aria-label="Search">
-        <button class="btn btn-secondary my-2 btn-sm" type="submit">Login</button>
+      <form class="form-inline mt-2 mt-md-0" method="POST" action="/login">
+        <input class="form-control mr-sm-2 my-2 form-control-sm" type="text" name="nm" placeholder="Username" required>
+        <input class="form-control mr-sm-2 my-2 form-control-sm" type="password" name="np" placeholder="Password" required>
+        <button class="btn btn-secondary my-2 btn-sm" type="submit" name="submit" value="Log In">Login</button>
       </form>
     </div>
  </nav>
