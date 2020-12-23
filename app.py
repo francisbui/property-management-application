@@ -51,6 +51,11 @@ def aboutus():
     return render_template('aboutus.html')
 
 
+@app.route('/why')
+def why():
+    return render_template('why.html')
+
+
 @app.route('/properties')
 def properties():
     return render_template('properties.html')
