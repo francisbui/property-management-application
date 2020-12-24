@@ -5,6 +5,7 @@ Oct 6, 2020
 
 import csv
 import re
+import os
 import pandas as pd
 from datetime import datetime, timezone
 
@@ -15,7 +16,8 @@ from werkzeug.utils import redirect
 
 app = Flask(__name__)
 
-app.secret_key = 'thisismysecretkey'
+the_key = os.urandom(16)
+app.secret_key = the_key
 
 mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'sql9383118'
@@ -224,4 +226,4 @@ def notifications():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
