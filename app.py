@@ -36,7 +36,7 @@ def database():
 
     cur.execute(''' INSERT INTO player VALUES (1, 'Anthony')''')
     cur.execute(''' INSERT INTO player VALUES (2, 'Billy')''')
-    mysql.connect().commit()
+    conn.commit()
     cur.execute("SELECT name FROM player where id=2")
     results = cur.fetchone()
     print(results)
