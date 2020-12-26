@@ -9,13 +9,13 @@
             <img class="mb-4" src="../static/images/logo.svg" alt="" width="72" height="72">
             <h2>Register Today!</h2>
             <p>Create an account to access pay your rent, <br/> review documents, schedule maintenance, and more</p>
-            <input type="text" name="nm" class="form-control form-control-lg my-3" placeholder="Email" required autofocus>
+            <input type="text" name="em" class="form-control form-control-lg my-3" placeholder="Email" required autofocus>
             <input type="password" name="np" class="form-control form-control-lg my-3" placeholder="New Password" required>
             <input type="text" name="fn" class="form-control form-control-lg my-3" placeholder="First Name" required>
             <input type="text" name="ln" class="form-control form-control-lg my-3" placeholder="Last Name" required>
             <input type="number" name="pn" class="form-control form-control-lg my-3" placeholder="Primary Number" required>
             <label for="inputDOB">Date Of Birth</label>
-            <input type="date" name="dt" class="form-control form-control-lg my-3" id="inputDOB" placeholder="Date of Birth" required>
+            <input type="date" name="bd" class="form-control form-control-lg my-3" id="inputDOB" placeholder="Date of Birth" required>
 
                 <button class="btn btn-lg btn-secondary btn-block" type="submit" name="submit" value="Register">Register</button>
             <br/>
@@ -27,37 +27,37 @@
               <div class="form-row">
                 <div class="form-group col-md-5">
                   <label for="inputFirst">First Name</label>
-                  <input type="text" class="form-control form-control-lg" id="inputFirst" placeholder="John">
+                  <input type="text" name="fn" class="form-control form-control-lg" id="inputFirst" placeholder="John">
                 </div>
                 <div class="form-group col-md-5">
                   <label for="inputLast">Last Name</label>
-                  <input type="text" class="form-control form-control-lg" id="inputLast" placeholder="Smith">
+                  <input type="text" name="ln" class="form-control form-control-lg" id="inputLast" placeholder="Smith">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="inputUnit">Unit</label>
-                  <input type="text" class="form-control form-control-lg" id="inputUnit" placeholder="A301">
+                  <input type="text" name="ut" class="form-control form-control-lg" id="inputUnit" placeholder="A301">
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="inputEmail">Email Address</label>
-                <input type="email" class="form-control form-control-lg" id="inputEmail" placeholder="example@example.com">
+                <input type="email" name="em" class="form-control form-control-lg" id="inputEmail" placeholder="example@example.com">
               </div>
 
               <div class="form-group">
-                <label for="inputPassword">Password</label>
-                <input type="email" class="form-control form-control-lg" id="inputPassword">
+                <label for="inputPassword">New Password</label>
+                <input type="password" name="np" class="form-control form-control-lg" id="inputPassword">
               </div>
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="inputPrimary">Telephone Number</label>
-                  <input type="number" class="form-control form-control-lg" id="inputPrimary" placeholder="(123) 456 -7890">
+                  <label for="inputPrimary">Primary Number</label>
+                  <input type="number" name="pn" class="form-control form-control-lg" id="inputPrimary" placeholder="(123) 456 -7890">
                 </div>
 
                 <div class="form-group col-md-6">
                   <label for="inputAlt">Date of Birth</label>
-                  <input type="date" class="form-control form-control-lg" id="inputAlt">
+                  <input type="date" name="bd" class="form-control form-control-lg" id="inputAlt">
                 </div>
               </div>
 
