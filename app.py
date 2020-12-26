@@ -104,12 +104,15 @@ def register():
     if request.method == 'POST':
         username = request.form['nm']
         password = request.form['np']
+        # TODO more request stuff; ie dob, email, etc
         acc_pass = pd.read_csv('accounts.csv', skiprows=0)
+        # TODO to see if username is already taken
         for i in acc_pass['username']:
             if i == username:
                 return render_template('register.html',
                                        taken='Username is taken. Please try again.')
 
+        # TODO if password is successful, save to the db
         if re.match(r"^(?=\S{12,40}$)(?=.*?\d)(?=.*?[a-z])"
                     r"(?=.*?[A-Z])(?=.*?[^A-Za-z\s0-9])", password):
             with open('accounts.csv', "a") as accounts:
@@ -226,4 +229,4 @@ def notifications():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
