@@ -34,9 +34,9 @@ def database():
     cur = conn.cursor()
     # cur.execute('''CREATE TABLE player (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20))''')
 
-    cur.execute(''' INSERT INTO player VALUES (1, 'Anthony')''')
-    cur.execute(''' INSERT INTO player VALUES (2, 'Billy')''')
-    conn.commit()
+    # cur.execute(''' INSERT INTO player VALUES (1, 'Anthony')''')
+    # cur.execute(''' INSERT INTO player VALUES (2, 'Billy')''')
+    # conn.commit()
     cur.execute("SELECT name FROM player where id=2")
     results = cur.fetchone()
     print(results)
