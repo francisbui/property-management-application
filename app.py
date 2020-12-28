@@ -20,9 +20,9 @@ the_key = os.urandom(16)
 app.secret_key = the_key
 
 mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = 'sql9383118'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'pLa9v4aRCh'
-app.config['MYSQL_DATABASE_DB'] = 'sql9383118'
+app.config['MYSQL_DATABASE_USER'] = 'sql9384143'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'zyRa4nwr16'
+app.config['MYSQL_DATABASE_DB'] = 'sql9384143'
 app.config['MYSQL_DATABASE_HOST'] = 'sql9.freemysqlhosting.net'
 app.config['MYSQL_CURSOR CLASS'] = 'DictCursor'
 mysql.init_app(app)
@@ -37,7 +37,10 @@ def database():
     # cur.execute(''' INSERT INTO player VALUES (1, 'Anthony')''')
     # cur.execute(''' INSERT INTO player VALUES (2, 'Billy')''')
     # conn.commit()
-    cur.execute("SELECT name FROM player where id=2")
+    # cur.execute("SELECT email FROM user where id=1")
+    cur.execute(''' INSERT INTO user (firstname, lastname, email, dob, primarynumber) VALUES ('Jane', 'Doe', '2001-02-03', 'janedoe@gmail.com', 0987654321);''')
+    conn.commit()
+    cur.execute("SELECT email FROM user where id=2")
     results = cur.fetchone()
     print(results)
     return str(results[0])
@@ -98,25 +101,66 @@ def login():
 
     return render_template('login.html')
 
+#
+# @app.route('/register', methods=['POST', 'GET'])
+# def register():
+#     if request.method == 'POST':
+#         username = request.form['nm']
+#         password = request.form['np']
+#         # TODO more request stuff; ie dob, email, etc
+#         acc_pass = pd.read_csv('accounts.csv', skiprows=0)
+#         # TODO to see if username is already taken
+#         for i in acc_pass['username']:
+#             if i == username:
+#                 return render_template('register.html',
+#                                        taken='Username is taken. Please try again.')
+#
+#         # TODO if password is successful, save to the db
+#         if re.match(r"^(?=\S{12,40}$)(?=.*?\d)(?=.*?[a-z])"
+#                     r"(?=.*?[A-Z])(?=.*?[^A-Za-z\s0-9])", password):
+#             with open('accounts.csv', "a") as accounts:
+#                 accounts.write('\n' + username + ',' + sha256_crypt.hash(password))
+#                 return redirect(url_for('login'))
+#
+#         else:
+#             return render_template('register.html',
+#                                    taken='Password requirements: '
+#                                          '12 characters in length, '
+#                                          '1 uppercase character, '
+#                                          '1 lowercase character, '
+#                                          '1 number and '
+#                                          '1 special character.'
+#                                    )
+#
+#     return render_template('register.html')
+
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        username = request.form['nm']
+        firstname = request.form['fn']
+        lastname = request.form['ln']
+        unit = request.form['ut']
+        email = request.form['em']
         password = request.form['np']
+        primarynumber = request.form['pn']
+        dob = request.form['bd']
         # TODO more request stuff; ie dob, email, etc
         acc_pass = pd.read_csv('accounts.csv', skiprows=0)
         # TODO to see if username is already taken
-        for i in acc_pass['username']:
-            if i == username:
+        for i in acc_pass['email']:
+            if i == email:
                 return render_template('register.html',
-                                       taken='Username is taken. Please try again.')
+                                       taken='Email is taken. Please try again.')
 
         # TODO if password is successful, save to the db
         if re.match(r"^(?=\S{12,40}$)(?=.*?\d)(?=.*?[a-z])"
                     r"(?=.*?[A-Z])(?=.*?[^A-Za-z\s0-9])", password):
             with open('accounts.csv', "a") as accounts:
-                accounts.write('\n' + username + ',' + sha256_crypt.hash(password))
+                password = sha256_crypt.hash(password)
+                conn = mysql.connect()
+                cur = conn.cursor()
+                cur.execute("INSERT INTO user (firstname, lastname, email, password, primarynumber, dob) VALUES (%s, %s, %s, %s, %s, %s)", (firstname, lastname, email, primarynumber, dob, password))
                 return redirect(url_for('login'))
 
         else:
