@@ -10,7 +10,9 @@ import pandas as pd
 from datetime import datetime, timezone
 
 from flask import Flask, render_template, request, url_for, session
+# from flask_sqlalchemy import SQLAlchemy
 from flaskext.mysql import MySQL
+import sqlite3
 from passlib.hash import sha256_crypt
 from werkzeug.utils import redirect
 
@@ -19,13 +21,16 @@ app = Flask(__name__)
 the_key = os.urandom(16)
 app.secret_key = the_key
 
-mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = 'sql9384143'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'zyRa4nwr16'
-app.config['MYSQL_DATABASE_DB'] = 'sql9384143'
-app.config['MYSQL_DATABASE_HOST'] = 'sql9.freemysqlhosting.net'
-app.config['MYSQL_CURSOR CLASS'] = 'DictCursor'
-mysql.init_app(app)
+conn = sqlite3.connect('accounts.db')
+print('Open database successfully')
+
+# mysql = MySQL()
+# app.config['MYSQL_DATABASE_USER'] = 'sql9384143'
+# app.config['MYSQL_DATABASE_PASSWORD'] = 'zyRa4nwr16'
+# app.config['MYSQL_DATABASE_DB'] = 'sql9384143'
+# app.config['MYSQL_DATABASE_HOST'] = 'sql9.freemysqlhosting.net'
+# app.config['MYSQL_CURSOR CLASS'] = 'DictCursor'
+# mysql.init_app(app)
 
 
 @app.route('/database')
@@ -38,7 +43,8 @@ def database():
     # cur.execute(''' INSERT INTO player VALUES (2, 'Billy')''')
     # conn.commit()
     # cur.execute("SELECT email FROM user where id=1")
-    cur.execute(''' INSERT INTO user (firstname, lastname, email, dob, primarynumber) VALUES ('Jane', 'Doe', '2001-02-03', 'janedoe@gmail.com', 0987654321);''')
+    cur.execute(
+        ''' INSERT INTO user (firstname, lastname, email, dob, primarynumber) VALUES ('Jane', 'Doe', '2001-02-03', 'janedoe@gmail.com', 0987654321);''')
     conn.commit()
     cur.execute("SELECT email FROM user where id=2")
     results = cur.fetchone()
@@ -101,6 +107,7 @@ def login():
 
     return render_template('login.html')
 
+
 #
 # @app.route('/register', methods=['POST', 'GET'])
 # def register():
@@ -160,7 +167,9 @@ def register():
                 password = sha256_crypt.hash(password)
                 conn = mysql.connect()
                 cur = conn.cursor()
-                cur.execute("INSERT INTO user (firstname, lastname, email, password, primarynumber, dob) VALUES (%s, %s, %s, %s, %s, %s)", (firstname, lastname, email, primarynumber, dob, password))
+                cur.execute(
+                    "INSERT INTO user (firstname, lastname, email, password, primarynumber, dob) VALUES (%s, %s, %s, %s, %s, %s)",
+                    (firstname, lastname, email, primarynumber, dob, password))
                 return redirect(url_for('login'))
 
         else:
