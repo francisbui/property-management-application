@@ -21,35 +21,24 @@ app = Flask(__name__)
 the_key = os.urandom(16)
 app.secret_key = the_key
 
-conn = sqlite3.connect('accounts.db')
-print('Open database successfully')
-
-# mysql = MySQL()
-# app.config['MYSQL_DATABASE_USER'] = 'sql9384143'
-# app.config['MYSQL_DATABASE_PASSWORD'] = 'zyRa4nwr16'
-# app.config['MYSQL_DATABASE_DB'] = 'sql9384143'
-# app.config['MYSQL_DATABASE_HOST'] = 'sql9.freemysqlhosting.net'
-# app.config['MYSQL_CURSOR CLASS'] = 'DictCursor'
-# mysql.init_app(app)
+# conn = sqlite3.connect('accounts.db')
+# print('Open database successfully')
 
 
 @app.route('/database')
 def database():
-    # conn = mysql.connect()
-    # cur = conn.cursor()
-    # cur.execute('''CREATE TABLE player (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20))''')
 
-    # cur.execute(''' INSERT INTO player VALUES (1, 'Anthony')''')
-    # cur.execute(''' INSERT INTO player VALUES (2, 'Billy')''')
-    # conn.commit()
-    # cur.execute("SELECT email FROM user where id=1")
-    # cur.execute(
-    #     ''' INSERT INTO user (firstname, lastname, email, dob, primarynumber) VALUES ('Jane', 'Doe', '2001-02-03', 'janedoe@gmail.com', 0987654321);''')
-    # conn.commit()
-    # cur.execute("SELECT email FROM user where id=2")
-    # results = cur.fetchone()
-    # print(results)
-    # return str(results[0])
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+    # cur.execute("create table Employees (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, address TEXT NOT NULL)")
+    # cur.execute('''INSERT INTO employees (name, email, address) VALUES ('anne', 'anne', 'Ninth')''')
+    cur.execute('''Select name from employees WHERE id=3''')
+    con.commit()
+    results = cur.fetchone()
+    print(results)
+    # con.commit()
+    print('select successfully')
+    con.close()
 
 
 @app.route('/')
