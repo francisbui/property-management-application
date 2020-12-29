@@ -10,8 +10,6 @@ import pandas as pd
 from datetime import datetime, timezone
 
 from flask import Flask, render_template, request, url_for, session
-# from flask_sqlalchemy import SQLAlchemy
-from flaskext.mysql import MySQL
 import sqlite3
 from passlib.hash import sha256_crypt
 from werkzeug.utils import redirect
@@ -31,14 +29,15 @@ def database():
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
     # cur.execute("create table Employees (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, address TEXT NOT NULL)")
-    # cur.execute('''INSERT INTO employees (name, email, address) VALUES ('anne', 'anne', 'Ninth')''')
-    cur.execute('''Select name from employees WHERE id=3''')
-    con.commit()
+    # cur.execute('''INSERT INTO employees (name, email, address) VALUES ('frankie', 'frankie@gmail.com', '123 Hello Dr')''')
+    cur.execute('''Select firstname from user WHERE id=1''')
+    # con.commit()
     results = cur.fetchone()
     print(results)
-    # con.commit()
-    print('select successfully')
+    cur.execute('''Select dob from user WHERE id=1''')
+    name = cur.fetchone()
     con.close()
+    return render_template('database.html', results=results[0], name=name[0])
 
 
 @app.route('/')
@@ -154,11 +153,10 @@ def register():
                     r"(?=.*?[A-Z])(?=.*?[^A-Za-z\s0-9])", password):
             with open('accounts.csv', "a") as accounts:
                 password = sha256_crypt.hash(password)
-                conn = mysql.connect()
-                cur = conn.cursor()
-                cur.execute(
-                    "INSERT INTO user (firstname, lastname, email, password, primarynumber, dob) VALUES (%s, %s, %s, %s, %s, %s)",
-                    (firstname, lastname, email, primarynumber, dob, password))
+                with sqlite3.connect("database.db") as con:
+                    cur = con.cursor()
+                cur.execute('''INSERT INTO user(firstname, lastname, dob, email, primarynumber, password) VALUES (?,?,?,?,?,?)''', (firstname, lastname, dob, primarynumber, password))
+                con.close()
                 return redirect(url_for('login'))
 
         else:
