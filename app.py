@@ -140,13 +140,13 @@ def register():
         password = request.form['np']
         primarynumber = request.form['pn']
         dob = request.form['bd']
-        # TODO more request stuff; ie dob, email, etc
+
         acc_pass = pd.read_csv('accounts.csv', skiprows=0)
         # TODO to see if username is already taken
         for i in acc_pass['email']:
             if i == email:
                 return render_template('register.html',
-                                       taken='Email is taken. Please try again.')
+                                       taken='Email is already registered. Please try again.')
 
         # TODO if password is successful, save to the db
         if re.match(r"^(?=\S{12,40}$)(?=.*?\d)(?=.*?[a-z])"
@@ -155,7 +155,7 @@ def register():
                 password = sha256_crypt.hash(password)
                 with sqlite3.connect("database.db") as con:
                     cur = con.cursor()
-                cur.execute('''INSERT INTO user(firstname, lastname, dob, email, primarynumber, password) VALUES (?,?,?,?,?,?)''', (firstname, lastname, dob, primarynumber, password))
+                cur.execute('''INSERT INTO user(firstname, lastname, dob, email, primarynumber, password, unit) VALUES (?,?,?,?,?,?)''', (firstname, lastname, dob, primarynumber, password, unit))
                 con.close()
                 return redirect(url_for('login'))
 
