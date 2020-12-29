@@ -35,21 +35,21 @@ print('Open database successfully')
 
 @app.route('/database')
 def database():
-    conn = mysql.connect()
-    cur = conn.cursor()
+    # conn = mysql.connect()
+    # cur = conn.cursor()
     # cur.execute('''CREATE TABLE player (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20))''')
 
     # cur.execute(''' INSERT INTO player VALUES (1, 'Anthony')''')
     # cur.execute(''' INSERT INTO player VALUES (2, 'Billy')''')
     # conn.commit()
     # cur.execute("SELECT email FROM user where id=1")
-    cur.execute(
-        ''' INSERT INTO user (firstname, lastname, email, dob, primarynumber) VALUES ('Jane', 'Doe', '2001-02-03', 'janedoe@gmail.com', 0987654321);''')
-    conn.commit()
-    cur.execute("SELECT email FROM user where id=2")
-    results = cur.fetchone()
-    print(results)
-    return str(results[0])
+    # cur.execute(
+    #     ''' INSERT INTO user (firstname, lastname, email, dob, primarynumber) VALUES ('Jane', 'Doe', '2001-02-03', 'janedoe@gmail.com', 0987654321);''')
+    # conn.commit()
+    # cur.execute("SELECT email FROM user where id=2")
+    # results = cur.fetchone()
+    # print(results)
+    # return str(results[0])
 
 
 @app.route('/')
