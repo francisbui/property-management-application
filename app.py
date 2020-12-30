@@ -20,10 +20,6 @@ the_key = os.urandom(16)
 app.secret_key = the_key
 
 
-# conn = sqlite3.connect('accounts.db')
-# print('Open database successfully')
-
-
 @app.route('/database')
 def database():
     with sqlite3.connect("database.db") as con:
@@ -69,18 +65,34 @@ def apply():
 def login():
     try:
         if request.method == 'POST':
-            username = request.form['nm']
+            email = request.form['nm']
             password = request.form['np']
-            with open('accounts.csv') as accounts:
-                acc_pass = dict(filter(None, csv.reader(accounts)))
+            # with open('accounts.csv') as accounts:
+            #     acc_pass = dict(filter(None, csv.reader(accounts)))
 
-            if sha256_crypt.verify(password, acc_pass[username]):
-                session['username'] = username
+            with sqlite3.connect("database.db") as con:
+                cur = con.cursor()
+            cur.execute('SELECT email FROM user where email=?', (email,))  # prevent SqlInject
+            email_check = cur.fetchone()
+            cur.execute('SELECT password FROM user where email=?', (email,))  # prevent SqlInject
+            password_check = cur.fetchone()
+            # con.close()
+
+            if sha256_crypt.verify(password, password_check[0]):
+                cur.execute('SELECT firstname FROM user where email=?', (email,))  # prevent SqlInject
+                firstname = cur.fetchone()
+                cur.execute('SELECT lastname FROM user where email=?', (email,))  # prevent SqlInject
+                lastname = cur.fetchone()
+                username = firstname[0] + " " + lastname[0]
+                session['username'] = email_check[0]
                 print(session['username'])
+                con.close()
                 return render_template('dashboard.html',
                                        username=username,
                                        dashtodaydate=datetime.now().strftime('%b %d')
                                        )
+            con.close()  # closing database if verification fails
+
             with open('logger.csv', "a") as log:
                 log.write('\n' + datetime.now().strftime("%x, %X %p, ") +
                           datetime.now(timezone.utc).strftime('%X %Z, ') +
