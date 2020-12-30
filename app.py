@@ -28,18 +28,16 @@ app.secret_key = the_key
 def database():
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
+        # cur.execute("create table Employees (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, address TEXT NOT NULL)")
+        # cur.execute('''INSERT INTO employees (name, email, address) VALUES ('frankie', 'frankie@gmail.com', '123 Hello Dr')''')
+        cur.execute('''Select firstname from user WHERE id=1''')
         # con.commit()
-        # con.close()
-    # cur.execute("create table Employees (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, address TEXT NOT NULL)")
-    # cur.execute('''INSERT INTO employees (name, email, address) VALUES ('frankie', 'frankie@gmail.com', '123 Hello Dr')''')
-    cur.execute('''Select firstname from user WHERE id=1''')
-    # con.commit()
-    results = cur.fetchone()
-    print(results)
-    cur.execute('''Select dob from user WHERE id=1''')
-    name = cur.fetchone()
-    con.close()
-    return render_template('database.html', results=results[0], name=name[0])
+        results = cur.fetchone()
+        print(results)
+        cur.execute('''Select dob from user WHERE id=1''')
+        name = cur.fetchone()
+        con.close()
+        return render_template('database.html', results=results[0], name=name[0])
 
 
 @app.route('/')
@@ -100,6 +98,7 @@ def login():
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    # Get data from the registration form
     if request.method == 'POST':
         firstname = request.form['fn']
         lastname = request.form['ln']
@@ -113,7 +112,6 @@ def register():
         with sqlite3.connect("database.db") as con:
             cur = con.cursor()
         cur.execute('SELECT 1 FROM user where email=?', (email,))  # prevent SqlInject
-        # con.commit()
         email_check = cur.fetchone()
         print(email_check)
         if email_check is not None:
@@ -122,21 +120,19 @@ def register():
             return render_template('register.html',
                                    taken='Email is already registered. Please try again.')
 
-        # TODO if password is successful, save to the db
+        # Validate the user's new password
         if re.match(r"^(?=\S{12,40}$)(?=.*?\d)(?=.*?[a-z])"
                     r"(?=.*?[A-Z])(?=.*?[^A-Za-z\s0-9])", password):
-            with open('accounts.csv', "a") as accounts:
-                password = sha256_crypt.hash(password)
-                # with sqlite3.connect("database.db") as con:
-                #     cur = con.cursor()
-                cur.execute(
-                    '''INSERT INTO user(firstname, lastname, dob, email, primarynumber, password, unit) VALUES (?,?,?,?,?,?,?)''',
-                    (firstname, lastname, dob, email, primarynumber, password, unit))
-                con.commit()
-                print('added new user to the database')
-                con.close()
-                return redirect(url_for('login'))
+            password = sha256_crypt.hash(password)
+            cur.execute(
+                '''INSERT INTO user(firstname, lastname, dob, email, primarynumber, password, unit) VALUES (?,?,?,?,?,?,?)''',
+                (firstname, lastname, dob, email, primarynumber, password, unit))
+            con.commit()
+            print('added new user to the database')
+            con.close()
+            return redirect(url_for('login'))
 
+        # New password length or combination is not safe
         else:
             return render_template('register.html',
                                    taken='Password requirements: '
