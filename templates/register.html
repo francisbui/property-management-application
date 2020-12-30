@@ -27,7 +27,7 @@
 <!--        </form>-->
 
         <div class="container col-md-6">
-            <form>
+            <form method="POST" action="/register">
               <div class="form-row">
                 <div class="form-group col-md-5">
                   <label for="inputFirst">First Name</label>
@@ -67,6 +67,7 @@
 
               <button type="submit" class="btn btn-lg btn-secondary btn-block my-3">Register</button>
             </form>
+                        <h5 class="text-danger">{{ taken }}</h5>
         </div>
 
 

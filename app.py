@@ -19,15 +19,17 @@ app = Flask(__name__)
 the_key = os.urandom(16)
 app.secret_key = the_key
 
+
 # conn = sqlite3.connect('accounts.db')
 # print('Open database successfully')
 
 
 @app.route('/database')
 def database():
-
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
+        # con.commit()
+        # con.close()
     # cur.execute("create table Employees (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, address TEXT NOT NULL)")
     # cur.execute('''INSERT INTO employees (name, email, address) VALUES ('frankie', 'frankie@gmail.com', '123 Hello Dr')''')
     cur.execute('''Select firstname from user WHERE id=1''')
@@ -96,40 +98,6 @@ def login():
     return render_template('login.html')
 
 
-#
-# @app.route('/register', methods=['POST', 'GET'])
-# def register():
-#     if request.method == 'POST':
-#         username = request.form['nm']
-#         password = request.form['np']
-#         # TODO more request stuff; ie dob, email, etc
-#         acc_pass = pd.read_csv('accounts.csv', skiprows=0)
-#         # TODO to see if username is already taken
-#         for i in acc_pass['username']:
-#             if i == username:
-#                 return render_template('register.html',
-#                                        taken='Username is taken. Please try again.')
-#
-#         # TODO if password is successful, save to the db
-#         if re.match(r"^(?=\S{12,40}$)(?=.*?\d)(?=.*?[a-z])"
-#                     r"(?=.*?[A-Z])(?=.*?[^A-Za-z\s0-9])", password):
-#             with open('accounts.csv', "a") as accounts:
-#                 accounts.write('\n' + username + ',' + sha256_crypt.hash(password))
-#                 return redirect(url_for('login'))
-#
-#         else:
-#             return render_template('register.html',
-#                                    taken='Password requirements: '
-#                                          '12 characters in length, '
-#                                          '1 uppercase character, '
-#                                          '1 lowercase character, '
-#                                          '1 number and '
-#                                          '1 special character.'
-#                                    )
-#
-#     return render_template('register.html')
-
-
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
@@ -141,21 +109,31 @@ def register():
         primarynumber = request.form['pn']
         dob = request.form['bd']
 
-        acc_pass = pd.read_csv('accounts.csv', skiprows=0)
-        # TODO to see if username is already taken
-        for i in acc_pass['email']:
-            if i == email:
-                return render_template('register.html',
-                                       taken='Email is already registered. Please try again.')
+        # Checks if email is already taken
+        with sqlite3.connect("database.db") as con:
+            cur = con.cursor()
+        cur.execute('SELECT 1 FROM user where email=?', (email,))  # prevent SqlInject
+        # con.commit()
+        email_check = cur.fetchone()
+        print(email_check)
+        if email_check is not None:
+            print('email is taken')
+            con.close()
+            return render_template('register.html',
+                                   taken='Email is already registered. Please try again.')
 
         # TODO if password is successful, save to the db
         if re.match(r"^(?=\S{12,40}$)(?=.*?\d)(?=.*?[a-z])"
                     r"(?=.*?[A-Z])(?=.*?[^A-Za-z\s0-9])", password):
             with open('accounts.csv', "a") as accounts:
                 password = sha256_crypt.hash(password)
-                with sqlite3.connect("database.db") as con:
-                    cur = con.cursor()
-                cur.execute('''INSERT INTO user(firstname, lastname, dob, email, primarynumber, password, unit) VALUES (?,?,?,?,?,?)''', (firstname, lastname, dob, primarynumber, password, unit))
+                # with sqlite3.connect("database.db") as con:
+                #     cur = con.cursor()
+                cur.execute(
+                    '''INSERT INTO user(firstname, lastname, dob, email, primarynumber, password, unit) VALUES (?,?,?,?,?,?,?)''',
+                    (firstname, lastname, dob, email, primarynumber, password, unit))
+                con.commit()
+                print('added new user to the database')
                 con.close()
                 return redirect(url_for('login'))
 
