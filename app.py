@@ -84,13 +84,13 @@ def login():
                 cur.execute('SELECT lastname FROM user where email=?', (email,))  # prevent SqlInject
                 lastname = cur.fetchone()
                 username = firstname[0] + " " + lastname[0]
-                session['username'] = email_check[0]
+                session['username'] = username
+                session['email'] = email_check[0]
                 print(session['username'])
+                print(session['email'])
                 con.close()
-                return render_template('dashboard.html',
-                                       username=username,
-                                       dashtodaydate=datetime.now().strftime('%b %d')
-                                       )
+                return redirect(url_for('dashboard'))
+
             con.close()  # closing database if verification fails
 
             with open('logger.csv', "a") as log:
@@ -100,6 +100,7 @@ def login():
             return render_template('login.html',
                                    taken='Password does not match. Please try again'
                                    )
+
     except KeyError:
         return render_template('login.html',
                                taken='Username does not exist'
@@ -213,6 +214,7 @@ def updatepass():
 @app.route('/logout')
 def logout():
     session.pop('username', None)
+    session.pop('email', None)
     return redirect(url_for('index'))
 
 
@@ -229,11 +231,29 @@ def dashboard():
 
 @app.route('/profile')
 def profile():
-    if 'username' not in session:
+    if 'email' not in session:
         return render_template('login.html')
     else:
+        with sqlite3.connect("database.db") as con:
+            cur = con.cursor()
+        cur.execute('SELECT * from user WHERE email=?', (session['email'],))
+        account_info = cur.fetchone()
+        print(account_info)
+        firstname = account_info[1]
+        lastname = account_info[2]
+        email = account_info[4]
+        primarynumber = account_info[5]
+        unit = account_info[8]
+        print(unit)
+
+
         return render_template('profile.html',
-                               username=session['username'])
+                               username=session['username'],
+                               firstname=firstname,
+                               lastname=lastname,
+                               primarynumber=primarynumber,
+                               email=email,
+                               unit=unit,)
 
 
 @app.route('/billing')
