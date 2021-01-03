@@ -63,12 +63,11 @@ def apply():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # Form input
     try:
         if request.method == 'POST':
             email = request.form['nm']
             password = request.form['np']
-            # with open('accounts.csv') as accounts:
-            #     acc_pass = dict(filter(None, csv.reader(accounts)))
 
             with sqlite3.connect("database.db") as con:
                 cur = con.cursor()
@@ -78,6 +77,7 @@ def login():
             password_check = cur.fetchone()
             # con.close()
 
+            # Password verification
             if sha256_crypt.verify(password, password_check[0]):
                 cur.execute('SELECT firstname FROM user where email=?', (email,))  # prevent SqlInject
                 firstname = cur.fetchone()
@@ -93,6 +93,7 @@ def login():
 
             con.close()  # closing database if verification fails
 
+            # Password logging system
             with open('logger.csv', "a") as log:
                 log.write('\n' + datetime.now().strftime("%x, %X %p, ") +
                           datetime.now(timezone.utc).strftime('%X %Z, ') +
@@ -245,7 +246,6 @@ def profile():
         primarynumber = account_info[5]
         unit = account_info[8]
         print(unit)
-
 
         return render_template('profile.html',
                                username=session['username'],
