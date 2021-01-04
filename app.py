@@ -20,6 +20,8 @@ the_key = os.urandom(16)
 app.secret_key = the_key
 
 
+# TODO Fix logout issues
+
 @app.route('/database')
 def database():
     with sqlite3.connect("database.db") as con:
@@ -162,6 +164,8 @@ def register():
 
 @app.route('/security', methods=['POST', 'GET'])
 def updatepass():
+    # TODO update password on database rather than csv file
+    # TODO Change function name to security
     if 'username' not in session:
         return render_template('login.html')
 
@@ -253,11 +257,12 @@ def profile():
                                lastname=lastname,
                                primarynumber=primarynumber,
                                email=email,
-                               unit=unit,)
+                               unit=unit, )
 
 
 @app.route('/billing')
 def billing():
+    # TODO Create a database to billing
     if 'username' not in session:
         return render_template('login.html')
     else:
