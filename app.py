@@ -19,7 +19,7 @@ app = Flask(__name__)
 the_key = os.urandom(16)
 app.secret_key = the_key
 
-
+# TODO Figure out @login decorator
 # TODO Fix logout issues
 
 @app.route('/database')
